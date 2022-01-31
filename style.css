@@ -1,26 +1,82 @@
+
 body{
     background-image: url(card_bg1.jpeg);
     height:100vh;
     width:100vw;
+    line-height:unset !important; /* due to bootstrap */
     background-size:cover;
     
 }
+*{box-sizing: unset !important;} /* due to bootstrap */
 
-/** TO MAKE THE BOXES **/
-#link, #game-name,#game,#credits,#instructions{
+#anchor, #game-name,#game,#credits,#instructions{
     margin: 20px auto;
+    
+    
     padding:20px;
     border:5px solid black;
     background-color: white;
 }
 
-/** INDIVIDUAL BOX DIMENSIONS **/
 #game-name{
     width:40%;
     height:30px;
 }
 
-#link{
+#game-window{
+    display:flex;
+    height: 60%;
+}
+
+#player-window, #dealer-window{
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: space-between;
+
+    align-items: center;
+    
+    width:50%;
+    height:100%;
+    border:5px solid black;
+}
+
+#player-points,#dealer-points{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 40px;
+    width: 200px;
+    height: 40px;
+    border: 1px solid black;
+}
+
+#player-cards,#dealer-cards{
+    display:flex;
+    height: 350px;
+    width: 100%;
+    margin-top: 50px;
+    border: 1px solid black;
+    margin-bottom:50px;
+}
+
+#game-options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:20%;
+    border:5px solid black;
+}
+
+#game-options-1{
+    display: flex;
+    height: 40px;
+    width: 250px;
+    justify-content: space-around;
+}
+
+#anchor{
     width:60%;
     height:30px;
 }
@@ -28,7 +84,36 @@ body{
 #game{
     margin-top:60px;
     width:80%;
-    height:320px;
+    height:800px;
+    display:flex;
+    flex-direction:column;
+    background-color: rgb(32, 147, 248);
+    
+}
+
+#points{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    height: 20%;
+}
+
+#row-1,#row-2{
+    display:flex;
+    
+}
+
+#cell-11,#cell-12,#cell-13,#cell-21,#cell-22,#cell-23{
+    border:1px solid black;
+    height: 40px;
+    width: 50px;
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+
 }
 
 #instructions{
@@ -42,7 +127,9 @@ body{
     width:300px;
 }
 
-/** TEXT ALIGNS**/
+#devs{
+    text-align:right;
+}
 
 h1,h4{
     text-align: center;
@@ -52,8 +139,4 @@ h1,h4{
 p{
     font-size: 20px;
     margin:0;
-}
-
-#devs{
-    text-align:right;
 }
