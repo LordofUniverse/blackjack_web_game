@@ -1,0 +1,58 @@
+body{
+    background-image: url(card_bg1.jpeg);
+    height:100vh;
+    width:100vw;
+    
+    background-size:cover;
+    
+}
+
+#link, #game-name,#game,#credits,#instructions{
+    margin: 20px auto;
+    
+    
+    padding:20px;
+    border:5px solid black;
+    background-color: white;
+}
+
+#game-name{
+    width:40%;
+    height:30px;
+}
+
+#link{
+    width:60%;
+    height:30px;
+}
+
+#game{
+    margin-top:60px;
+    width:80%;
+    height:320px;
+}
+
+#instructions{
+    width:100%;
+}
+
+#credits{
+    margin-right:0;
+    margin-bottom:0;
+    height:50px;
+    width:300px;
+}
+
+#devs{
+    text-align:right;
+}
+
+h1,h4{
+    text-align: center;
+    margin:0;
+}
+
+p{
+    font-size: 20px;
+    margin:0;
+}
