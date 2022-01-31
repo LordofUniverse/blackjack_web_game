@@ -2,20 +2,19 @@ body{
     background-image: url(card_bg1.jpeg);
     height:100vh;
     width:100vw;
-    
     background-size:cover;
     
 }
 
+/** TO MAKE THE BOXES **/
 #link, #game-name,#game,#credits,#instructions{
     margin: 20px auto;
-    
-    
     padding:20px;
     border:5px solid black;
     background-color: white;
 }
 
+/** INDIVIDUAL BOX DIMENSIONS **/
 #game-name{
     width:40%;
     height:30px;
@@ -43,9 +42,7 @@ body{
     width:300px;
 }
 
-#devs{
-    text-align:right;
-}
+/** TEXT ALIGNS**/
 
 h1,h4{
     text-align: center;
@@ -55,4 +52,8 @@ h1,h4{
 p{
     font-size: 20px;
     margin:0;
+}
+
+#devs{
+    text-align:right;
 }
