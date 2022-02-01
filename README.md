@@ -25,4 +25,4 @@
     I have purposely added 2 seconds delay after winning or losing or tie so that u could see the card before moving to the next game.
     The only library that has been used here is Bootstrap
 
-Started on jan 31 and ended on feb 1. jsut 2 days :)
+Started on jan 31 and ended on feb 1. just 2 days :)
