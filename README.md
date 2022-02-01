@@ -1,5 +1,7 @@
 # blackjack_web_game
 
+## LINK : https://blackjack-eight.vercel.app/
+
 ## HOW TO PLAY THE GAME:
 ### HOW POINTS ARE COUNTED
         
@@ -17,3 +19,7 @@
 ### OBJECTIVE
     The game is won by whichever person has the points closest to 21, but not exceeding it.
     In case it is exceeding 21, then the person gets busted (lost the round)
+
+## Features:
+    Images once loaded, will be saved into cache. So, the images will get loaded quick after loading once.
+    I have purposely added 2 seconds delay after winning or losing or tie so that u could see the card before moving to the next game.
