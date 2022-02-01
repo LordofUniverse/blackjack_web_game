@@ -23,3 +23,4 @@
 ## Features:
     Images once loaded, will be saved into cache. So, the images will get loaded quick after loading once.
     I have purposely added 2 seconds delay after winning or losing or tie so that u could see the card before moving to the next game.
+    The only library that has been used here is <b>Bootstrap</b>
