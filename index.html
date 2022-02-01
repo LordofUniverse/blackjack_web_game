@@ -41,9 +41,9 @@
         
         <div id="game-options">
             <div id="game-options-1">
-                <button type="button" class="btn btn-primary">HIT</button>
-                <button type="button" class="btn btn-warning">STAY</button>
-                <button type="button" class="btn btn-danger">NEW</button>
+                <button type="button" class="btn btn-primary" onclick="player_draw_card()">HIT</button>
+                <button type="button" class="btn btn-warning" onclick="move_to_dealer()">STAY</button>
+                <button type="button" class="btn btn-danger" onclick="restart()">NEW</button>
             </div>
         </div>
         <div id="points">
@@ -60,13 +60,13 @@
             </div>
             <div id="row-2">
                 <div id="cell-21">
-
+                    0
                 </div>
                 <div id="cell-22">
-                    
+                    0
                 </div>
                 <div id="cell-23">
-                    
+                    0
                 </div>
             </div>
         </div>
@@ -105,8 +105,12 @@
 
     <div id="credits">
         <p id="devs"> 
-            By: - <br> Karthikeyan J <br> Vinu Rakav
+            <p id = "by">By: </p>
+            <p id = "names">Karthikeyan J <br> Vinu Rakav</p>
         </p>
     </div>
 </body>
+
+<script src  = "main.js"> </script>
+
 </html>
