@@ -1,8 +1,7 @@
-
 body{
     background-image: url(card_bg1.jpeg);
     height:100vh;
-    width:100vw;
+    width:100%;
     line-height:unset !important; /* due to bootstrap */
     background-size:cover;
     
@@ -117,18 +116,26 @@ body{
 }
 
 #instructions{
-    width:100%;
+    /* width:100%; */
+}
+
+#by{
+    text-align:left;
+}
+
+#names{
+    text-align: center;
 }
 
 #credits{
-    margin-right:0;
-    margin-bottom:0;
-    height:50px;
-    width:300px;
+    margin-right: 0;
+    margin-bottom: 0;
+    height: 79px;
+    width: 199px;
 }
 
 #devs{
-    text-align:right;
+    /* text-align:right; */
 }
 
 h1,h4{
