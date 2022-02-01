@@ -48,7 +48,7 @@ body{
     margin-top: 40px;
     width: 200px;
     height: 40px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 #player-cards,#dealer-cards{
@@ -56,8 +56,11 @@ body{
     height: 350px;
     width: 100%;
     margin-top: 50px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-bottom:50px;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 #game-options{
@@ -146,4 +149,20 @@ h1,h4{
 p{
     font-size: 20px;
     margin:0;
+}
+
+
+.smallimg{
+    height: 110px;
+    width: 90px;   
+}
+
+.smallimg2{
+    height: 140px;
+    width: 130px;
+}
+
+#back{
+    width: 100%;
+    object-fit: contain;
 }
