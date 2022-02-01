@@ -36,10 +36,33 @@ let dealer_url_list = []
 let player_total = 0
 let dealer_total = 0
 
+
+// to save loaded images into cache
+const preloadImages = (array) =>  {
+    if (!preloadImages.list) {
+        preloadImages.list = [];
+    }
+    var list = preloadImages.list;
+    for (var i = 0; i < array.length; i++) {
+        var img = new Image();
+        img.onload = function() {
+            var index = list.indexOf(this);
+            if (index !== -1) {
+                // remove image from the array once it's loaded
+                // for memory consumption reasons
+                list.splice(index, 1);
+            }
+        }
+        list.push(img);
+        img.src = array[i];
+    }
+}
+
+
 // check if player got blackjack but only once at start of game
 const player_check_blackjack = (cards) => {
 
-    if (cards.includes('j') && cards.includes('10')){
+    if (cards.includes('A') && (cards.includes('10') || cards.includes('J') || cards.includes('Q') || cards.includes('K')) ){
 
         return true
 
@@ -133,7 +156,13 @@ const calculate_dealer = (cards) => {
 
 }
 
-
+const wait = (ms) => {
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+}
 
 
 // drawing the cards at start of the game
@@ -143,7 +172,6 @@ const init_cards = () => {
         let card = cards_list[rand]
         player_cards.push(card)
 
-        console.log(rand)
         
         let colour = colours_list[Math.floor(Math.random() * 4)]
         player_color_cards.push(colour)
@@ -153,9 +181,10 @@ const init_cards = () => {
     
     }
 
-    console.log(player_url_list)
 
     document.getElementById("player-cards").innerHTML = ""
+    
+    preloadImages(player_url_list);
 
     // display cards
     for (let i = 0; i < 2; i++) {
@@ -168,9 +197,10 @@ const init_cards = () => {
 
     if (player_check_blackjack(player_cards)){
         // Player won, blackjack!
-        console.log('BLACKJACK')
-        alert('blackjack')
+        alert('Its Blackjack! U won the game! Click ok to play again')
+        wait(2000);
         restart()
+        
     } 
 
     player_total = calculate_player(player_cards)
@@ -185,9 +215,9 @@ const init_cards = () => {
         let url = 'IMAGES/' + colour + '/' + card + '.png'
         dealer_url_list.push(url)
 
-        console.log(dealer_url_list)
-
     }  
+
+    preloadImages(dealer_url_list);
 
     // display first card alone
     document.getElementById("dealer-cards").innerHTML = "<img class = 'smallimg' src = " + dealer_url_list[0] +" ></img>"
@@ -197,17 +227,14 @@ const init_cards = () => {
 
     if (dealer_total == 'busted'){
         // ui stuff
-        alert('dealer busted')
-        console.log('dealer busted')
+        alert('dealer got busted! U won the game! Click ok to win again')
+        wait(2000)
         restart()
     } else if (player_total == 'busted'){
         // ui stuff
-        alert('player busted')
-        console.log('player busted')
+        alert('You got busted! Click ok to try again')
+        wait(2000)
         restart()
-    } else {
-        // hit(ask for a card) or stay(he doesnt want to draw a card anymre)
-        console.log('ask or stay')
     }
 
 }
@@ -218,9 +245,6 @@ const player_draw_card = () => {
     let card = cards_list[rand]
     
     player_cards.push(card)
-    console.log(rand)
-
-    console.log(player_cards)
 
     let colour = colours_list[Math.floor(Math.random() * 4)]
     player_color_cards.push(colour)
@@ -228,9 +252,10 @@ const player_draw_card = () => {
     let url = 'IMAGES/' + colour + '/' + card + '.png'
     
     player_url_list.push(url)
-    console.log(player_url_list)
 
     document.getElementById("player-cards").innerHTML = ''
+
+    preloadImages(player_url_list);
 
     // display cards
     for (let i = 0; i < player_url_list.length; i++) {
@@ -239,13 +264,14 @@ const player_draw_card = () => {
     
     }
 
+
     player_total = calculate_player(player_cards)
 
     if (player_total == 'busted'){
         // dealer won
         document.getElementById("cell-22").innerHTML = parseInt(document.getElementById("cell-22").innerHTML) + 1
-        console.log('busted')
-        alert('busted')
+        alert('You got busted! Click ok to try again')
+        wait(2000)
         restart()
     }
 }
@@ -254,6 +280,8 @@ const player_draw_card = () => {
 const dealer_draw_card = () => {
 
     document.getElementById("dealer-cards").innerHTML = ''
+    
+    preloadImages(dealer_url_list);
 
     // display cards
     for (let i = 0; i < dealer_url_list.length; i++) {
@@ -261,6 +289,7 @@ const dealer_draw_card = () => {
         document.getElementById("dealer-cards").innerHTML += "<img class = 'smallimg' src = " + dealer_url_list[i] +" ></img>"
     
     }
+
 
     while (dealer_total < 17){
         
@@ -274,12 +303,12 @@ const dealer_draw_card = () => {
         
         dealer_url_list.push(url)
     
-
-        console.log(dealer_cards)
         
         dealer_total = calculate_dealer(dealer_cards)
 
         document.getElementById("dealer-cards").innerHTML = ''
+        
+        preloadImages(dealer_url_list);
 
         // display cards
         for (let i = 0; i < dealer_url_list.length; i++) {
@@ -287,12 +316,13 @@ const dealer_draw_card = () => {
             document.getElementById("dealer-cards").innerHTML += "<img class = 'smallimg' src = " + dealer_url_list[i] +" ></img>"
         
         }
+
         
         if (dealer_total == 'busted'){
             // player won
-            console.log('dealer busted')
-            alert('dealer busted')
+            alert('dealer got busted! You won the game! Click ok to win again')
             document.getElementById("cell-21").innerHTML = parseInt(document.getElementById("cell-21").innerHTML) + 1
+            wait(2000)
             restart()
             return
         } else if(dealer_total >= 17) {
@@ -312,21 +342,21 @@ const check_player_dealer_total = () => {
 
     if (player_total > dealer_total){
         // player won
-        console.log('player won')
-        alert('player won')
+        alert('You won the game. Click ok to win again')
         document.getElementById("cell-21").innerHTML = parseInt(document.getElementById("cell-21").innerHTML) + 1
+        wait(2000)
         restart()
     } else if (dealer_total > player_total){
         // dealer won
-        console.log('dealer won')
-        alert('dealer won')
+        alert('dealer won the game! Click ok to try again')
         document.getElementById("cell-22").innerHTML = parseInt(document.getElementById("cell-22").innerHTML) + 1
+        wait(2000)
         restart()
     } else {
         // tie
-        console.log('tie')
-        alert('tie')
+        alert('Its a tie! Click ok to win this time')
         document.getElementById("cell-23").innerHTML = parseInt(document.getElementById("cell-23").innerHTML) + 1
+        wait(2000)
         restart()
     }
 
@@ -351,7 +381,6 @@ const restart = () => {
     player_total = 0
 
     init_cards()
-    console.log(player_cards, dealer_cards, player_total, dealer_total)
 }
 
 
@@ -360,5 +389,4 @@ const restart = () => {
 //dom stuff
 document.addEventListener("DOMContentLoaded", function(event) {
     init_cards()
-    console.log(player_cards, dealer_cards, player_total, dealer_total)
 });
