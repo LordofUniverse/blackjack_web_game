@@ -160,8 +160,9 @@ const wait = (ms) => {
     var start = new Date().getTime();
     var end = start;
     while(end < start + ms) {
-      end = new Date().getTime();
+        end = new Date().getTime();
    }
+
 }
 
 
@@ -228,6 +229,7 @@ const init_cards = () => {
     if (dealer_total == 'busted'){
         // ui stuff
         alert('dealer got busted! U won the game! Click ok to win again')
+        
         wait(2000)
         restart()
     } else if (player_total == 'busted'){
@@ -269,11 +271,21 @@ const player_draw_card = () => {
 
     if (player_total == 'busted'){
         // dealer won
+        // show dealer cards
+        document.getElementById("dealer-cards").innerHTML = ''
+
+        for (let i = 0; i < dealer_url_list.length; i++) {
+
+            document.getElementById("dealer-cards").innerHTML += "<img class = 'smallimg' src = " + dealer_url_list[i] +" ></img>"
+        
+        }
+
         document.getElementById("cell-22").innerHTML = parseInt(document.getElementById("cell-22").innerHTML) + 1
         alert('You got busted! Click ok to try again')
         wait(2000)
         restart()
     }
+
 }
 
 // dealer as to draw a new card untill his total is >= 17
@@ -328,6 +340,8 @@ const dealer_draw_card = () => {
         } else if(dealer_total >= 17) {
             break
         }
+
+        wait(1000)
 
     }
 
